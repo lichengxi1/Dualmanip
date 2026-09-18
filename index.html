@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#111a2d" />
+    <meta
+      name="description"
+      content="DualManip is a dual-path framework for vision-language guided manipulation of moving and deformable objects."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="DualManip — Dynamic Manipulation Through Dual Paths" />
+    <meta
+      property="og:description"
+      content="Semantic reasoning when needed. Geometric grasp adaptation as the scene changes."
+    />
+    <link rel="canonical" href="https://lcx.github.io/dualmanip/" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>DualManip — Dual-Path Dynamic Manipulation</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top" aria-label="DualManip, back to top">
+          <span class="brand-mark" aria-hidden="true"><i></i><i></i></span>
+          <span>dual<span class="brand-accent">manip</span></span>
+        </a>
+        <nav class="site-nav" aria-label="Main navigation">
+          <a href="#idea">The idea</a>
+          <a href="#method">Method</a>
+          <a href="#results">Results</a>
+          <a href="#tasks">Tasks</a>
+        </nav>
+        <a class="header-paper" href="assets/dualmanip-paper.pdf">Paper <span aria-hidden="true">↗</span></a>
+      </div>
+    </header>
+
+    <main id="main">
+      <section class="hero" id="top" aria-labelledby="hero-title">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="container hero-layout">
+          <div class="hero-copy">
+            <div class="eyebrow"><span class="status-dot"></span> ICRA 2027 manuscript <span class="eyebrow-divider">/</span> Robot manipulation</div>
+            <h1 id="hero-title">Reason once.<br /><em>Adapt as things move.</em></h1>
+            <p class="hero-subtitle">DualManip: Agentic Dynamic Manipulation via Dual-Path Semantic Reasoning and Geometric Adaptation</p>
+            <p class="hero-description">A vision-language system that keeps task intent in one path and updates the grasp in another—so moving or deforming objects do not force a full semantic replan every time.</p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="assets/dualmanip-paper.pdf">Read the paper <span aria-hidden="true">↗</span></a>
+              <a class="button button-outline" href="#method">Explore the method <span aria-hidden="true">↓</span></a>
+            </div>
+          </div>
+
+          <figure class="hero-visual">
+            <div class="visual-topline"><span class="visual-live"><span></span> Live geometry</span><span>Conceptual illustration</span></div>
+            <div class="visual-stage">
+              <div class="visual-label visual-label-top"><span>01</span> Semantic plan <strong>grasp the snake</strong></div>
+              <svg class="hero-drawing" viewBox="0 0 600 360" role="img" aria-label="Conceptual drawing of a deforming object and a grasp moved to updated contact points">
+                <defs>
+                  <linearGradient id="path-gradient" x1="0" x2="1"><stop offset="0" stop-color="#79b7ff"/><stop offset="1" stop-color="#b8ef83"/></linearGradient>
+                </defs>
+                <path class="drawing-grid" d="M0 75H600 M0 150H600 M0 225H600 M0 300H600 M75 0V360 M150 0V360 M225 0V360 M300 0V360 M375 0V360 M450 0V360 M525 0V360" />
+                <path class="old-shape" d="M94 231 C145 164 197 267 257 198 S365 152 465 202" />
+                <path class="new-shape-glow" d="M88 256 C155 300 175 160 256 179 S341 286 495 178" />
+                <path class="new-shape" d="M88 256 C155 300 175 160 256 179 S341 286 495 178" />
+                <path class="contact-line" d="M279 193 L323 232" />
+                <circle class="contact-ring" cx="279" cy="193" r="11" /><circle class="contact-core" cx="279" cy="193" r="4" />
+                <circle class="contact-ring" cx="323" cy="232" r="11" /><circle class="contact-core" cx="323" cy="232" r="4" />
+                <path class="gripper" d="M251 145 L272 166 L277 179 M355 188 L335 209 L332 221 M294 132 L346 175" />
+                <path class="motion-arrow" d="M400 123 L430 112 L419 142" />
+                <text x="390" y="100" class="drawing-text">shape change</text>
+              </svg>
+              <div class="visual-label visual-label-bottom"><span>02</span> Geometric update <strong>same task, new pose</strong></div>
+            </div>
+            <figcaption class="visual-caption"><span class="caption-pulse"></span> Contact transfer follows the changing object. No new task interpretation is needed while intent remains valid.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section class="metric-band" aria-label="Key results">
+        <div class="container metric-grid">
+          <div class="metric"><strong>53.3<span>%</span></strong><span>Mean success across three continuously changing tasks</span></div>
+          <div class="metric"><strong>138.7<span> ms</span></strong><span>Average geometric adaptation per update</span></div>
+          <div class="metric"><strong>≈46<span>×</span></strong><span>Faster than GPT-based agentic verification and replanning*</span></div>
+        </div>
+      </section>
+
+      <section class="section section-idea" id="idea" aria-labelledby="idea-title">
+        <div class="container">
+          <div class="section-heading">
+            <div class="section-kicker">01 / The idea</div>
+            <h2 id="idea-title">When the object changes,<br /><em>the task often doesn't.</em></h2>
+            <p>DualManip separates high-level reasoning from execution-time geometry. The two paths meet at an Information Interaction Module that decides whether to execute an updated grasp or return to semantic reasoning.</p>
+          </div>
+          <div class="path-layout">
+            <article class="path-card semantic-card">
+              <div class="path-card-top"><span class="path-index">PATH 01</span><span class="path-icon" aria-hidden="true">✳</span></div>
+              <h3>Semantic reasoning</h3>
+              <p>A VLM decomposes the instruction into stages, identifies active and passive objects, and grounds task-relevant regions. Spatial constraints are optimized into executable poses for later manipulation stages.</p>
+              <div class="path-tags"><span>VLM</span><span>Grounding</span><span>Constraint solving</span></div>
+            </article>
+            <article class="path-card geometry-card">
+              <div class="path-card-top"><span class="path-index">PATH 02</span><span class="path-icon" aria-hidden="true">⌁</span></div>
+              <h3>Geometric adaptation</h3>
+              <p>A template-based correspondence network matches live RGB-D points to the object reference. Two intended grasp contacts transfer across observations, allowing the gripper pose to be reconstructed as the object moves or deforms.</p>
+              <div class="path-tags"><span>RGB-D</span><span>Dense matching</span><span>Contact transfer</span></div>
+            </article>
+            <article class="interaction-card">
+              <span class="interaction-symbol" aria-hidden="true">↳</span>
+              <div><span class="path-index">WHERE THE PATHS MEET</span><h3>Information Interaction Module</h3><p>Initial grasp generation, correspondence confidence, reachability and collision checks, with semantic replanning when an update cannot be executed safely.</p></div>
+              <span class="interaction-result">Execute <span aria-hidden="true">/</span> Replan</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-method" id="method" aria-labelledby="method-title">
+        <div class="container">
+          <div class="section-heading section-heading-inline">
+            <div><div class="section-kicker">02 / Method</div><h2 id="method-title">Two paths.<br /><em>One action.</em></h2></div>
+            <p>The semantic path establishes a task-conditioned action. The geometric path preserves its intended contacts through scene change. A shared module checks each pose before execution.</p>
+          </div>
+          <figure class="pipeline-figure">
+            <a href="assets/pipeline.png" target="_blank" rel="noopener" aria-label="Open the full-resolution DualManip pipeline figure"><img src="assets/pipeline.png" alt="DualManip pipeline showing semantic reasoning, template-based geometric tracking, feasibility checking, constraint solving, and execution" loading="lazy" /></a>
+            <figcaption><strong>System overview.</strong> Semantic reasoning and live geometry are connected through grasp initialization, contact transfer, feasibility checking, and fallback. Click to enlarge.</figcaption>
+          </figure>
+          <div class="method-steps">
+            <article><span>01</span><h3>Understand the task</h3><p>Parse instruction stages and ground active, passive, and functional object regions.</p></article>
+            <article><span>02</span><h3>Match live geometry</h3><p>Use a pre-scanned template and shape-adaptive point correspondences for each RGB-D observation.</p></article>
+            <article><span>03</span><h3>Transfer the grasp</h3><p>Map two task-relevant contacts to the current object and reconstruct a gripper pose.</p></article>
+            <article><span>04</span><h3>Check and route</h3><p>Validate correspondence, reachability, and collision safety; replan when needed.</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-results" id="results" aria-labelledby="results-title">
+        <div class="container">
+          <div class="section-heading section-heading-inline">
+            <div><div class="section-kicker">03 / Results</div><h2 id="results-title">Built for scenes<br /><em>that keep moving.</em></h2></div>
+            <p>Real-world evaluation covers deformable, articulated, and rigid objects. The strongest separation appears when the scene changes continuously, where repeated high-level reasoning cannot keep pace.</p>
+          </div>
+          <div class="result-cards">
+            <article class="result-card result-card-feature"><div class="result-label">Continuous dynamic / mean success</div><div class="result-value">53.3<span>%</span></div><p>DualManip across snake placement, toy positioning, and block placement.</p><div class="result-divider"></div><div class="result-compare"><span>ReKep 28.9%</span><span>OmniManip 17.8%</span><span>CLEA 0%</span></div></article>
+            <article class="result-card"><div class="result-label">Single-change / mean success</div><div class="result-value">64.4<span>%</span></div><p>Matched CLEA's success rate while avoiding a full agentic update for valid geometric changes.</p></article>
+            <article class="result-card"><div class="result-label">Adaptation latency / one change</div><div class="result-value">138.7<span> ms</span></div><p>Average per DualManip update; GPT-based CLEA took 6.376 s in the paper's latency evaluation.</p></article>
+          </div>
+          <div class="table-heading"><h3>Continuous-change manipulation</h3><span>Successful trials / 15 per task</span></div>
+          <div class="table-scroll" role="region" aria-label="Continuous dynamic results" tabindex="0">
+            <table>
+              <thead><tr><th scope="col">Task</th><th scope="col">DualManip</th><th scope="col">ReKep</th><th scope="col">OmniManip</th><th scope="col">CLEA</th><th scope="col">Open-loop</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Snake placement</th><td class="best">8/15</td><td>3/15</td><td>1/15</td><td>0/15</td><td>0/15</td></tr>
+                <tr><th scope="row">Toy positioning</th><td class="best">7/15</td><td>4/15</td><td>0/15</td><td>0/15</td><td>0/15</td></tr>
+                <tr><th scope="row">Block placement</th><td class="best">9/15</td><td>6/15</td><td>7/15</td><td>0/15</td><td>0/15</td></tr>
+                <tr class="mean-row"><th scope="row">Mean success</th><td>53.3%</td><td>28.9%</td><td>17.8%</td><td>0%</td><td>0%</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="results-note">* The ≈46× comparison uses the paper's 6.376 s GPT-based CLEA latency and 138.7 ms DualManip latency under a single scene change. These figures measure internal adaptation, excluding shared downstream execution modules.</p>
+        </div>
+      </section>
+
+      <section class="section section-tasks" id="tasks" aria-labelledby="tasks-title">
+        <div class="container">
+          <div class="section-heading section-heading-inline"><div><div class="section-kicker">04 / Evaluation</div><h2 id="tasks-title">Six real-world tasks.</h2></div><p>Three general manipulation tasks are evaluated in static, single-change, and continuous settings. Three PC assembly tasks are evaluated in the static setting.</p></div>
+          <div class="task-grid">
+            <article class="task-card"><div class="task-image task-image-blue"><span class="image-placeholder">Experiment image<br />coming soon</span><span class="image-index">01 / 06</span></div><div class="task-copy"><span>Non-rigid</span><h3>Snake placement</h3><p>Put a soft snake into a bowl while its shape and position change.</p></div></article>
+            <article class="task-card"><div class="task-image task-image-purple"><span class="image-placeholder">Experiment image<br />coming soon</span><span class="image-index">02 / 06</span></div><div class="task-copy"><span>Articulated</span><h3>Toy positioning</h3><p>Position a toy between two other figurines as its configuration changes.</p></div></article>
+            <article class="task-card"><div class="task-image task-image-green"><span class="image-placeholder">Experiment image<br />coming soon</span><span class="image-index">03 / 06</span></div><div class="task-copy"><span>Rigid motion</span><h3>Block placement</h3><p>Place a block fish into a bucket after or during displacement.</p></div></article>
+            <article class="task-card"><div class="task-image task-image-cream"><span class="image-placeholder">Experiment image<br />coming soon</span><span class="image-index">04 / 06</span></div><div class="task-copy"><span>Assembly · static</span><h3>RAM insertion</h3><p>Insert a memory module into its chassis slot.</p></div></article>
+            <article class="task-card"><div class="task-image task-image-cream"><span class="image-placeholder">Experiment image<br />coming soon</span><span class="image-index">05 / 06</span></div><div class="task-copy"><span>Assembly · static</span><h3>GPU insertion</h3><p>Insert a graphics card into its chassis slot.</p></div></article>
+            <article class="task-card"><div class="task-image task-image-cream"><span class="image-placeholder">Experiment image<br />coming soon</span><span class="image-index">06 / 06</span></div><div class="task-copy"><span>Assembly · static</span><h3>Fan placement</h3><p>Place a cooling fan at its designated mounting location.</p></div></article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-paper" id="paper" aria-labelledby="paper-title">
+        <div class="container paper-layout">
+          <div><div class="section-kicker">05 / Paper</div><h2 id="paper-title">The full story,<br /><em>in the paper.</em></h2><p>Architecture, shape-adaptive correspondence learning, contact-based grasp reconstruction, feasibility routing, and real-robot evaluation.</p><a class="button button-dark" href="assets/dualmanip-paper.pdf">Download paper <span aria-hidden="true">↗</span></a></div>
+          <div class="paper-card"><span class="paper-label">RESEARCH MANUSCRIPT</span><h3>DualManip: Agentic Dynamic Manipulation via Dual-Path Semantic Reasoning and Geometric Adaptation</h3><div class="paper-rule"></div><span class="paper-muted">ICRA 2027 manuscript · PDF</span><p>Author and code links can be added once they are ready for public release.</p></div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer"><div class="container footer-inner"><a class="brand footer-brand" href="#top"><span class="brand-mark" aria-hidden="true"><i></i><i></i></span><span>dual<span class="brand-accent">manip</span></span></a><p>Semantic reasoning when needed. Geometric adaptation as the scene changes.</p><a href="#top">Back to top ↑</a></div></footer>
+  </body>
+</html>
