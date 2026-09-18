@@ -109,11 +109,7 @@ h1 {
 .paper-icon {
   width: 15px;
   height: 15px;
-  fill: none;
-  stroke: currentColor;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.35;
+  fill: currentColor;
 }
 
 section { padding-top: 48px; }
