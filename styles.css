@@ -97,13 +97,22 @@ h2 {
 }
 
 .abstract {
-  font-size: 1rem;
-  line-height: 1.75;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1.06rem;
+  line-height: 1.7;
   text-align: justify;
 }
 
+.abstract-card {
+  padding: 24px 28px;
+  background: #f3f4f5;
+  border: 1px solid #d9dcdf;
+  border-radius: 12px;
+  box-shadow: 0 5px 16px rgba(20, 27, 36, 0.035);
+}
+
 .teaser {
-  max-width: 700px;
+  max-width: 520px;
   margin: 0 auto;
   border: 1px solid var(--line);
 }
@@ -125,19 +134,42 @@ figcaption {
 
 .experiment-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 28px;
+  grid-template-columns: 1fr;
+  gap: 30px;
 }
 
-.experiment { min-width: 0; }
+.experiment {
+  min-width: 0;
+  overflow: hidden;
+  background: #f5f6f6;
+  border: 1px solid #dfe2e3;
+  border-radius: 11px;
+}
 
-.experiment a { display: block; border: 1px solid var(--line); }
+.experiment a {
+  display: block;
+  padding: 13px;
+  background: #fff;
+  border-bottom: 1px solid #dfe2e3;
+}
 
 .experiment img { width: 100%; height: auto; }
 
 .experiment figcaption {
-  margin-top: 11px;
+  padding: 17px 20px 18px;
+  font-size: 1rem;
   font-weight: 600;
+  line-height: 1.45;
+}
+
+.experiment figcaption span {
+  display: block;
+  margin-bottom: 5px;
+  color: #747b82;
+  font-size: 0.69rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
 }
 
 footer {

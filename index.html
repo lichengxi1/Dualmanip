@@ -28,8 +28,8 @@
           Ruida Zhang<sup>1</sup>, Mingyang Li<sup>3,*</sup>, Xiangyang Ji<sup>1,†</sup>
         </p>
         <p class="affiliations">
-          <span><sup>1</sup> Department of Automation, Tsinghua University</span>
-          <span><sup>2</sup> School of Computer Science and Technology, Harbin Institute of Technology (Shenzhen)</span>
+          <span><sup>1</sup> Tsinghua University</span>
+          <span><sup>2</sup> HIT (Shenzhen)</span>
           <span><sup>3</sup> Beijing Institute of Control Engineering</span>
         </p>
         <p class="author-notes"><sup>*</sup> Equal contribution &nbsp;·&nbsp; <sup>†</sup> Corresponding author</p>
@@ -40,9 +40,11 @@
 
       <section aria-labelledby="abstract-title">
         <h2 id="abstract-title">Abstract</h2>
-        <p class="abstract">
-          Vision-language models enable open-vocabulary reasoning for robot manipulation, but their high inference latency limits responsiveness in dynamic scenes. We present DualManip, a dual-path framework that decouples infrequent semantic reasoning from responsive geometric adaptation. The semantic path interprets the task and grounds task-relevant interactions, while the geometric path updates template-to-observation correspondences from live RGB-D observations and transfers grasp contacts as objects move or deform. An Information Interaction Module connects the two paths by initializing task-relevant grasps, validating geometric updates, and triggering semantic replanning when needed. Real-world evaluation across six manipulation tasks demonstrates robust performance in static, single-change, and continuous dynamic settings.
-        </p>
+        <div class="abstract-card">
+          <p class="abstract">
+            Vision-language models enable open-vocabulary reasoning for robot manipulation, but their high inference latency limits responsiveness in dynamic scenes. We present DualManip, a dual-path framework that decouples infrequent semantic reasoning from responsive geometric adaptation. The semantic path interprets the task and grounds task-relevant interactions, while the geometric path updates template-to-observation correspondences from live RGB-D observations and transfers grasp contacts as objects move or deform. An Information Interaction Module connects the two paths by initializing task-relevant grasps, validating geometric updates, and triggering semantic replanning when needed. Real-world evaluation across six manipulation tasks demonstrates robust performance in static, single-change, and continuous dynamic settings.
+          </p>
+        </div>
       </section>
 
       <section aria-labelledby="teaser-title">
@@ -67,14 +69,20 @@
             <a href="assets/continuous-results.pdf" target="_blank" rel="noopener">
               <img src="assets/snake-placement-continuous.png" alt="Sequence of robot actions for snake placement under continuous dynamic scene changes" />
             </a>
-            <figcaption>Snake placement under continuous dynamic scene changes</figcaption>
+            <figcaption>
+              <span>Experiment 01</span>
+              Snake placement under continuous dynamic scene changes
+            </figcaption>
           </figure>
 
           <figure class="experiment">
             <a href="assets/single-change-results.pdf" target="_blank" rel="noopener">
               <img src="assets/toy-and-block-single-change.png" alt="Sequences of toy positioning and block placement under a single scene change" />
             </a>
-            <figcaption>Toy positioning and Block placement under a single scene change</figcaption>
+            <figcaption>
+              <span>Experiment 02</span>
+              Toy positioning and Block placement under a single scene change
+            </figcaption>
           </figure>
         </div>
       </section>
