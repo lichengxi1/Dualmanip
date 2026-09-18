@@ -46,7 +46,7 @@ h1 {
   max-width: 900px;
   margin: 0 auto;
   font-family: var(--serif);
-  font-size: clamp(2rem, 4.4vw, 3.1rem);
+  font-size: clamp(1.85rem, 3.5vw, 2.45rem);
   line-height: 1.16;
   font-weight: 700;
   letter-spacing: -0.025em;
@@ -106,6 +106,16 @@ h1 {
 
 .links a:hover { background: #101a2b; transform: translateY(-1px); }
 
+.paper-icon {
+  width: 15px;
+  height: 15px;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.35;
+}
+
 section { padding-top: 48px; }
 
 h2 {
@@ -133,7 +143,6 @@ h2 {
 .teaser {
   max-width: 430px;
   margin: 0 auto;
-  border: 1px solid var(--line);
 }
 
 .teaser a { display: block; }
@@ -143,12 +152,6 @@ h2 {
 figcaption {
   font-size: 0.94rem;
   line-height: 1.55;
-}
-
-.teaser figcaption {
-  padding: 14px 17px;
-  color: var(--muted);
-  border-top: 1px solid var(--line);
 }
 
 .experiment-grid {
