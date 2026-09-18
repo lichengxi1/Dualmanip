@@ -54,7 +54,9 @@ h1 {
 
 .authors {
   margin-top: 20px;
+  color: #2166e8;
   font-size: 1.05rem;
+  font-weight: 700;
   line-height: 1.65;
 }
 
@@ -66,13 +68,18 @@ h1 {
 }
 
 .affiliations {
-  display: grid;
-  gap: 3px;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 15px;
   margin-top: 11px;
-  color: var(--muted);
-  font-size: 0.83rem;
+  color: #202020;
+  font-size: 0.92rem;
+  font-weight: 500;
   line-height: 1.45;
 }
+
+.affiliations span { white-space: nowrap; }
 
 .author-notes {
   margin-top: 9px;
@@ -80,12 +87,24 @@ h1 {
   font-size: 0.8rem;
 }
 
-.links { margin-top: 17px; }
+.links { margin-top: 21px; }
 
 .links a {
-  font-size: 0.94rem;
-  text-underline-offset: 3px;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 17px;
+  color: #fff;
+  background: #1f2b40;
+  border-radius: 10px;
+  box-shadow: 0 3px 7px rgba(25, 36, 55, 0.14);
+  font-size: 0.88rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: background 0.18s ease, transform 0.18s ease;
 }
+
+.links a:hover { background: #101a2b; transform: translateY(-1px); }
 
 section { padding-top: 48px; }
 
@@ -112,7 +131,7 @@ h2 {
 }
 
 .teaser {
-  max-width: 520px;
+  max-width: 430px;
   margin: 0 auto;
   border: 1px solid var(--line);
 }
@@ -190,6 +209,8 @@ footer {
   section { padding-top: 38px; }
 
   .abstract { text-align: left; }
+
+  .affiliations { flex-wrap: wrap; gap: 4px 12px; }
 
   .experiment-grid { grid-template-columns: 1fr; gap: 28px; }
 }
