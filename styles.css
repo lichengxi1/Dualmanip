@@ -176,6 +176,30 @@ h2 {
   box-shadow: 0 5px 16px rgba(20, 27, 36, 0.035);
 }
 
+.pipeline-figure {
+  overflow: hidden;
+  background: #f3f4f5;
+  border: 1px solid #d9dcdf;
+  border-radius: 12px;
+  box-shadow: 0 5px 16px rgba(20, 27, 36, 0.035);
+}
+
+.pipeline-figure img {
+  display: block;
+  width: 100%;
+  height: auto;
+  background: #fff;
+}
+
+.pipeline-figure figcaption {
+  padding: 16px 20px 18px;
+  color: var(--muted);
+  border-top: 1px solid #d9dcdf;
+  font-family: "Times New Roman", Times, serif;
+  font-size: 0.98rem;
+  line-height: 1.6;
+}
+
 footer {
   width: min(100% - 40px, 960px);
   margin: 58px auto 0;

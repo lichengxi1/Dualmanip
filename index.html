@@ -17,7 +17,7 @@
     <link rel="canonical" href="https://lichengxi1.github.io/Dualmanip/" />
     <link rel="icon" type="image/png" href="assets/favicon.png?v=3" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" />
-    <link rel="stylesheet" href="styles.css?v=20260929" />
+    <link rel="stylesheet" href="styles.css?v=20260930" />
     <title>DualManip</title>
   </head>
   <body>
@@ -73,6 +73,19 @@
             DualManip demonstrates superior manipulation robustness, particularly under continuous scene changes, while achieving geometric adaptation approximately 46× faster than agentic verification and semantic replanning.
           </p>
         </div>
+      </section>
+
+      <section aria-labelledby="pipeline-title">
+        <h2 id="pipeline-title">Pipeline</h2>
+        <figure class="pipeline-figure">
+          <img
+            src="assets/pipeline.png"
+            alt="Overview of the DualManip pipeline"
+            loading="lazy"
+            decoding="async"
+          />
+          <figcaption>Overview of DualManip. Given instruction and RGB-D observation, the semantic path establishes a task-conditioned plan, from which the information interaction module generates the initial grasp. During execution, the geometric path continuously updates the grasp from live RGB-D observations, executing feasible updates and falling back otherwise. For subsequent manipulation stages, task-conditioned spatial relations are formulated as constraints and optimized into executable poses.</figcaption>
+        </figure>
       </section>
     </main>
 
